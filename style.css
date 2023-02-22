@@ -71,14 +71,105 @@
   opacity: 0.5;
 }
 
+.summary__container {
+  padding: 1.75rem 2.1875rem;
+  color: hsl(222, 29%, 27%);
+}
+.summary__container > h2 {
+  font-weight: 700;
+  font-size: 18px;
+}
+.summary__container .list {
+  margin: 1.3125rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  list-style: none;
+  gap: 1.3125rem;
+}
+.summary__container .list__item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  padding: 0.875rem 1.225rem;
+  border-radius: 0.4375rem;
+}
+.summary__container .list__item img {
+  grid-column: 1/2;
+  object-fit: contain;
+}
+.summary__container .list__item > strong {
+  grid-column-start: 2/7;
+  font-size: 13.6px;
+  font-weight: 800;
+}
+.summary__container .list__item .item__score {
+  grid-column: 9/11;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  color: hsl(222, 29%, 27%);
+  font-size: 13.6px;
+}
+.summary__container .list__item .item__score strong {
+  font-weight: 800;
+}
+.summary__container .list__item .item__score span {
+  font-weight: 700;
+  opacity: 0.5;
+}
+.summary__container .item-1 {
+  color: hsl(0, 100%, 67%);
+  background-color: hsla(0, 100%, 67%, 0.075);
+}
+.summary__container .item-2 {
+  color: hsl(39, 100%, 56%);
+  background-color: hsla(39, 100%, 56%, 0.075);
+}
+.summary__container .item-3 {
+  color: hsl(166, 100%, 37%);
+  background-color: hsla(166, 100%, 37%, 0.075);
+}
+.summary__container .item-4 {
+  color: hsl(234, 85%, 45%);
+  background-color: hsla(234, 85%, 45%, 0.075);
+}
+.summary__container button {
+  padding: 0.875rem;
+  border-radius: 2rem;
+  width: 100%;
+  border: transparent;
+  outline: none;
+  background-color: hsl(222, 29%, 27%);
+  color: white;
+  margin-top: 1.3125rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.summary__container button:hover, .summary__container button:focus {
+  background-image: linear-gradient(to bottom right, hsl(252, 100%, 67%), hsl(241, 81%, 54%));
+}
+
 @media screen and (min-width: 1024px) {
+  body {
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+  }
   .container {
     grid-template-rows: 1fr;
     grid-template-columns: repeat(2, 1fr);
+    filter: drop-shadow(0 1px 1rem hsla(234, 85%, 45%, 0.075));
+    background-color: white;
+    border-radius: 1rem;
   }
   .result__container {
-    border-radius: 2rem;
+    border-radius: 1rem;
     grid-column: 1/2;
+  }
+  .summary__container {
+    grid-column: 2/3;
   }
 }
 

@@ -13,6 +13,11 @@
     $primary-2 : hsl(39, 100%, 56%);
     $primary-3 : hsl(166, 100%, 37%);
     $primary-4 : hsl(234, 85%, 45%);
+    
+    $primary-1-light : hsla(0, 100%, 67%, .075);
+    $primary-2-light : hsla(39, 100%, 56%, .075);
+    $primary-3-light : hsla(166, 100%, 37%, .075);
+    $primary-4-light : hsla(234, 85%, 45%, .075);
 
     $bg-1 : hsl(252, 100%, 67%);
     $bg-2 : hsl(241, 81%, 54%);
@@ -22,7 +27,7 @@
     $circle-2 : hsla(241, 72%, 46%, 0);
 
     $light: white;
-
+    $dark: hsl(222, 29%, 27%);
 
     // units
     $padding : 1.75rem; 
@@ -108,17 +113,124 @@
     }
 }
 
+// Summary section
+.summary__container {
+    padding: $padding calc($padding * 1.25);
+    color: $dark;
 
+    & > h2 {
+        font-weight: 700;
+        font-size: calc($size * 1.125);
+    }
+
+    .list {
+        margin: calc($padding * .75) 0;
+        @include flex(column);
+        list-style: none;
+        gap: calc($padding * .75);
+    
+    
+        &__item {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            padding: calc($padding * .5) calc($padding * .7);
+            border-radius: calc($padding * .25);
+
+            & img {
+                grid-column: 1 / 2;
+                object-fit: contain;
+            }
+            
+            & > strong {
+                grid-column-start: 2 / 7;
+                font-size: calc($size * .85);
+                font-weight: 800;
+
+            }
+
+            & .item__score {
+                grid-column: 9 / 11;
+                display: inline-flex;
+                gap: calc($size * .25);
+                align-items: center;
+                color: $dark;
+                font-size: calc($size * .85);
+
+                & strong {
+                    font-weight: 800;
+                }
+                & span {
+                    font-weight: 700;
+                    opacity: $opacity;
+                }
+            }
+        }
+
+    }
+
+    .item {
+        &-1 {
+            color: $primary-1;
+            background-color: $primary-1-light;
+        }
+        &-2 {
+            color: $primary-2;
+            background-color: $primary-2-light;
+        }
+        &-3 {
+            color: $primary-3;
+            background-color: $primary-3-light;
+        }
+        &-4 {
+            color: $primary-4;
+            background-color: $primary-4-light;
+        }
+    }
+
+    button {
+        & {
+            padding: calc($padding * .5);
+            border-radius: $radius;
+            width: 100%;
+            border: transparent;
+            outline: none;
+            background-color: $dark;
+            color: $light;
+            margin-top: calc($padding * .75);
+            cursor: pointer;
+            transition: all .25s ease;
+        }
+
+        &:hover,
+        &:focus {
+            background-image: linear-gradient(to bottom right, $bg-1, $bg-2);
+        }
+    }
+
+}
 
 
 
 @media screen and (min-width:1024px) {
+    body {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+    }
     .container {
         grid-template-rows: 1fr;
         grid-template-columns: repeat(2, 1fr);
+        filter: drop-shadow(0 1px 1rem $primary-4-light);    
+        background-color: $light;
+        border-radius: calc($radius * .5);
     }
     .result__container {
-        border-radius: $radius;
+        border-radius: calc($radius * .5);
         grid-column: 1 / 2;
+    }
+    
+    .summary__container {
+        grid-column: 2 / 3;
     }
 }
