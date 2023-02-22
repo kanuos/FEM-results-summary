@@ -1,25 +1,124 @@
 // font family
 *, *::before, *::after {
     font-family: 'Hanken Grotesk', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: 500;
 }
 // variables
 
-$primary-1 : hsl(0, 100%, 67%);
-$primary-2 : hsl(39, 100%, 56%);
-$primary-3 : hsl(166, 100%, 37%);
-$primary-4 : hsl(234, 85%, 45%);
+    // colors
+    $primary-1 : hsl(0, 100%, 67%);
+    $primary-2 : hsl(39, 100%, 56%);
+    $primary-3 : hsl(166, 100%, 37%);
+    $primary-4 : hsl(234, 85%, 45%);
 
-$bg-1 : hsl(252, 100%, 67%);
-$bg-2 : hsl(241, 81%, 54%);
-
-
-$circle-1 : hsla(256, 72%, 46%, 1);
-$circle-2 : hsla(241, 72%, 46%, 0);
+    $bg-1 : hsl(252, 100%, 67%);
+    $bg-2 : hsl(241, 81%, 54%);
 
 
+    $circle-1 : hsla(256, 72%, 46%, 1);
+    $circle-2 : hsla(241, 72%, 46%, 0);
+
+    $light: white;
+
+
+    // units
+    $padding : 1.75rem; 
+    $radius : 2rem; 
+    $size : 16px;
+    $opacity: .5;
+    $opacity-light: .45;
+
+
+// mixin
+@mixin flex($direction: column) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: $direction;
+}
+
+// global
+.container {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    height: auto;
+    max-width: 50rem;
+    margin: auto;
+}
+
+
+// Result section
+.result__container {
+    padding: $padding;
+    background-image: linear-gradient(to bottom right, $bg-1, $bg-2);
+    border-radius: 0 0 $radius $radius;
+    @include flex(column);
+    gap: $padding;
+
+    grid-row: 1 / 2;
+
+    & > .caption {
+        color: $light;
+        opacity: $opacity;
+        font-size: calc($size * 1.125);
+        font-weight: 700;
+    }
+
+    & .result {
+        @include flex(column);
+        text-align: center;
+        color: $light;
+        
+        &--circle {
+            padding: $padding;
+            border-radius: 100%;
+            aspect-ratio: 1 / 1;
+            background-image: linear-gradient(to bottom, $circle-1, $circle-2);
+       
+            &__score {
+                font-size: calc($size * 3);
+                font-weight: 800;
+            }
+    
+            &__max {
+                font-size: calc($size * .9);
+                opacity: $opacity-light;
+            }
+        }
+
+
+        &--text {
+            width: 60%;
+            margin: 0 auto;
+            @include flex(column);
+            gap: calc($padding * .25);
+
+            h1 {
+                font-size: calc($size * 1.35);
+                font-weight: 700;
+            }
+            p {
+                font-size: calc($size * .9);
+                opacity: $opacity;
+            }
+        }
+    }
+}
 
 
 
 
 
-
+@media screen and (min-width:1024px) {
+    .container {
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .result__container {
+        border-radius: $radius;
+        grid-column: 1 / 2;
+    }
+}

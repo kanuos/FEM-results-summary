@@ -1,5 +1,85 @@
 *, *::before, *::after {
   font-family: "Hanken Grotesk", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight: 500;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  height: auto;
+  max-width: 50rem;
+  margin: auto;
+}
+
+.result__container {
+  padding: 1.75rem;
+  background-image: linear-gradient(to bottom right, hsl(252, 100%, 67%), hsl(241, 81%, 54%));
+  border-radius: 0 0 2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.75rem;
+  grid-row: 1/2;
+}
+.result__container > .caption {
+  color: white;
+  opacity: 0.5;
+  font-size: 18px;
+  font-weight: 700;
+}
+.result__container .result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+}
+.result__container .result--circle {
+  padding: 1.75rem;
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  background-image: linear-gradient(to bottom, hsl(256, 72%, 46%), hsla(241, 72%, 46%, 0));
+}
+.result__container .result--circle__score {
+  font-size: 48px;
+  font-weight: 800;
+}
+.result__container .result--circle__max {
+  font-size: 14.4px;
+  opacity: 0.45;
+}
+.result__container .result--text {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.4375rem;
+}
+.result__container .result--text h1 {
+  font-size: 21.6px;
+  font-weight: 700;
+}
+.result__container .result--text p {
+  font-size: 14.4px;
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .result__container {
+    border-radius: 2rem;
+    grid-column: 1/2;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
