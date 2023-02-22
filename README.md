@@ -11,7 +11,7 @@ Users should be able to:
 
 ### ScreenShot
 
-![UI](screenshots/3.%20Summary%20desktop.png)
+![UI](Output.png)
 
 ### Built with
 
