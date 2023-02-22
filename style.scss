@@ -6,6 +6,8 @@
     box-sizing: border-box;
     font-weight: 500;
 }
+
+
 // variables
 
     // colors
@@ -37,6 +39,7 @@
     $opacity-light: .45;
 
 
+
 // mixin
 @mixin flex($direction: column) {
     display: flex;
@@ -50,7 +53,7 @@
     display: grid;
     grid-template-rows: repeat(2, auto);
     height: auto;
-    max-width: 50rem;
+    max-width: 30rem;
     margin: auto;
 }
 
@@ -73,16 +76,22 @@
     }
 
     & .result {
-        @include flex(column);
         text-align: center;
         color: $light;
         
         &--circle {
             padding: $padding;
+            display: block;
+            background-image: linear-gradient(to bottom, $circle-1, $circle-2);
             border-radius: 100%;
             aspect-ratio: 1 / 1;
-            background-image: linear-gradient(to bottom, $circle-1, $circle-2);
-       
+            
+            &-content {
+                width: 100%;
+                height: 100%;
+                @include flex(column);
+
+            }
             &__score {
                 font-size: calc($size * 3);
                 font-weight: 800;
@@ -96,7 +105,7 @@
 
 
         &--text {
-            width: 60%;
+            width: 70%;
             margin: 0 auto;
             @include flex(column);
             gap: calc($padding * .25);
@@ -136,6 +145,7 @@
             grid-template-columns: repeat(10, 1fr);
             padding: calc($padding * .5) calc($padding * .7);
             border-radius: calc($padding * .25);
+            gap: calc($padding * .25);
 
             & img {
                 grid-column: 1 / 2;
@@ -150,7 +160,7 @@
             }
 
             & .item__score {
-                grid-column: 9 / 11;
+                grid-column-end: 11;
                 display: inline-flex;
                 gap: calc($size * .25);
                 align-items: center;
@@ -211,11 +221,21 @@
 }
 
 
+// attribution/footer section
+.attribution {
+    position: absolute;
+    z-index: -999;
+    scale: 0;
+    opacity: 0;
+    pointer-events: none;
+}
 
-@media screen and (min-width:1024px) {
+
+@media screen and (min-width:768px) {
     body {
         display: grid;
         min-height: 100vh;
+        min-height: 100dvh;
         place-items: center;
     }
     .container {
@@ -224,6 +244,7 @@
         filter: drop-shadow(0 1px 1rem $primary-4-light);    
         background-color: $light;
         border-radius: calc($radius * .5);
+        max-width: 45rem;
     }
     .result__container {
         border-radius: calc($radius * .5);
@@ -233,4 +254,14 @@
     .summary__container {
         grid-column: 2 / 3;
     }
+}
+
+// disabling the default browser text select style
+.result__container *::selection {
+    background-color: transparent;
+    color: $primary-2;
+}
+.summary__container *::selection {
+    background-color: transparent;
+    color: $dark;
 }
